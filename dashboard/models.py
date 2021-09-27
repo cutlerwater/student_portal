@@ -14,15 +14,29 @@ class Notes(models.Model):
     def __str__(self):
           return self.title
 
-
-class Books(models.Model):
+class Homework(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
+    subject = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
     description = models.TextField()
+    due = models.DateTimeField()
+    is_finished = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = "books"
-        verbose_name_plural = "books"
+        verbose_name = "homework"
+        verbose_name_plural = "homework"
+
+    def __str__(self):
+          return self.title
+
+class Todo(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    is_finished = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "todo"
+        verbose_name_plural = "todo"
 
     def __str__(self):
           return self.title
